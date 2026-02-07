@@ -2,12 +2,12 @@ import Link from "next/link"
 import { Instagram } from "lucide-react"
 
 const instagramPosts = [
-  { id: 1, image: "/images/termo-stanley.jpg" },
-  { id: 2, image: "/images/mate-ceramica.jpg" },
-  { id: 3, image: "/images/grabado-laser.jpg" },
-  { id: 4, image: "/images/kit-matero.jpg" },
-  { id: 5, image: "/images/category-termos.jpg" },
-  { id: 6, image: "/images/category-mates.jpg" },
+  { id: 1, image: "/images/insta-1.webp" },
+  { id: 2, image: "/images/insta-2.webp" },
+  { id: 3, image: "/images/insta-3.webp" },
+  { id: 4, image: "/images/insta-4.webp" },
+  { id: 5, image: "/images/insta-5.webp" },
+  { id: 6, image: "/images/insta-6.webp" },
 ]
 
 export function InstagramSection() {
