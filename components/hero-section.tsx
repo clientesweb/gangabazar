@@ -26,7 +26,7 @@ export function HeroSection() {
 
         {/* Description */}
         <p className="mt-8 max-w-lg text-pretty text-base font-medium leading-relaxed text-[#FFFFFF]/90 sm:mt-10 sm:text-lg">
-          Personalizamos termos, mates y accesorios con grabado laser. Hace que cada momento sea unico. Envios en el dia en San Martin.
+          Personalizamos termos, mates y accesorios con grabado laser. Hace que cada momento sea único.
         </p>
 
         {/* CTAs */}
