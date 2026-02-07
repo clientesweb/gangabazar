@@ -3,7 +3,6 @@
 export function AnnouncementBar() {
   const announcements = [
     "Personalizamos cada producto con grabado laser",
-    "Envios en el dia | San Martin, Bs. As.",
     "Pagas al recibir tu pedido",
     "Regalos personalizados para toda ocasion",
   ]
