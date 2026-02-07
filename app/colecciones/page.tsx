@@ -12,7 +12,7 @@ const collections = [
   {
     name: "Mates",
     description: "Ceramica, vidrio, acero, calabaza y silicona. El mate perfecto para cada estilo.",
-    image: "/images/category-mates.jpg",
+    image: "/images/category-mates.webp",
     href: "/colecciones/mates",
   },
   {
