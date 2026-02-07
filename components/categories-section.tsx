@@ -12,7 +12,7 @@ const categories = [
   {
     name: "Mates",
     description: "Ceramica, vidrio, acero, calabaza",
-    image: "/images/category-mates.jpg",
+    image: "/images/category-mates.webp",
     href: "/colecciones/mates",
     count: "6 productos",
   },
