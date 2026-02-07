@@ -35,7 +35,7 @@ export function Footer() {
               className="h-16 w-auto sm:h-20"
             />
             <p className="mt-4 max-w-xs text-sm font-medium leading-relaxed text-[#FFFFFF]/80">
-              Articulos del hogar personalizados con grabado laser. Termos, mates y mucho mas. Envios en el dia en San Martin, Bs. As.
+              Articulos del hogar personalizados con grabado laser. Termos, mates y mucho mas.
             </p>
             <div className="mt-6 flex gap-4">
               <Link
