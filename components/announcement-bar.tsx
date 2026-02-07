@@ -13,7 +13,7 @@ export function AnnouncementBar() {
     <div className="bg-[#1A1A1A] overflow-hidden whitespace-nowrap">
       <div className="animate-marquee inline-flex py-2.5">
         {duplicatedAnnouncements.map((text, index) => (
-          <span key={index} className="mx-8 text-xs sm:text-sm font-semibold tracking-wide text-[#C8AD7F]">
+          <span key={index} className="mx-8 text-xs sm:text-sm font-semibold tracking-wide text-[#a89060]">
             {text}
           </span>
         ))}

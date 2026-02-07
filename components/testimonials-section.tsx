@@ -63,7 +63,7 @@ export function TestimonialsSection() {
                   key={index}
                   onClick={() => setCurrent(index)}
                   className={`h-2 rounded-full transition-all ${
-                    index === current ? "w-6 bg-[#C8AD7F]" : "w-2 bg-[#FFFFFF]/30"
+                    index === current ? "w-6 bg-[#a89060]" : "w-2 bg-[#FFFFFF]/30"
                   }`}
                 />
               ))}

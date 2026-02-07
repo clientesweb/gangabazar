@@ -41,7 +41,7 @@ export function ProductCard({ product }: ProductCardProps) {
             className="h-full w-full object-cover transition-all duration-700"
           />
           {product.is_new && (
-            <span className="absolute left-4 top-4 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-primary-foreground">
+            <span className="absolute left-4 top-4 rounded-full bg-[#1A1A1A] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#FFFFFF]">
               Nuevo
             </span>
           )}
@@ -50,10 +50,10 @@ export function ProductCard({ product }: ProductCardProps) {
               e.preventDefault()
               setIsFavorite(!isFavorite)
             }}
-            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 backdrop-blur transition-all hover:bg-background"
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#1A1A1A]/80 backdrop-blur transition-all hover:bg-[#1A1A1A]"
           >
             <Heart
-              className={cn("h-5 w-5 transition-colors", isFavorite ? "fill-primary text-primary" : "text-foreground")}
+              className={cn("h-5 w-5 transition-colors", isFavorite ? "fill-[#FFFFFF] text-[#FFFFFF]" : "text-[#FFFFFF]")}
             />
           </button>
         </div>

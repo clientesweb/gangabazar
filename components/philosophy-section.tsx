@@ -4,7 +4,7 @@ export function PhilosophySection() {
       <div className="mx-auto max-w-4xl text-center">
         <span className="text-xs font-bold uppercase tracking-widest text-[#FFFFFF]/60">Grabado laser</span>
         <h2 className="mt-6 text-3xl font-bold leading-relaxed text-[#FFFFFF] sm:text-4xl lg:text-5xl">
-          Cada producto es <span className="text-[#C8AD7F]">unico</span> porque lo personalizamos para vos.
+          Cada producto es <span className="text-[#a89060]">unico</span> porque lo personalizamos para vos.
         </h2>
         <p className="mt-8 text-base font-medium leading-relaxed text-[#FFFFFF]/80 sm:text-lg">
           Con nuestro servicio de grabado laser, convertimos cada termo, mate o accesorio en una pieza exclusiva.

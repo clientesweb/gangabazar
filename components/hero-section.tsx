@@ -21,7 +21,7 @@ export function HeroSection() {
         <h1 className="max-w-4xl text-balance font-[var(--font-display)] text-5xl font-bold leading-[1.05] tracking-tight text-[#FFFFFF] sm:text-7xl md:text-8xl lg:text-9xl">
           Tu estilo,
           <br />
-          <span className="text-[#C8AD7F]">tu mate.</span>
+          <span className="text-[#a89060]">tu mate.</span>
         </h1>
 
         {/* Description */}
@@ -34,7 +34,7 @@ export function HeroSection() {
           <Button
             asChild
             size="lg"
-            className="group h-14 rounded-full bg-[#C8AD7F] px-10 text-sm font-bold uppercase tracking-wider text-[#FFFFFF] transition-all hover:bg-[#C8AD7F]/90 sm:px-14"
+            className="group h-14 rounded-full bg-[#a89060] px-10 text-sm font-bold uppercase tracking-wider text-[#FFFFFF] transition-all hover:bg-[#a89060]/90 sm:px-14"
           >
             <Link href="/colecciones">
               Ver productos

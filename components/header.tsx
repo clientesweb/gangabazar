@@ -58,7 +58,7 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full">
       <AnnouncementBar />
 
-      <nav className="relative mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:h-20 lg:px-8 bg-[#C8AD7F]">
+      <nav className="relative mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:h-20 lg:px-8 bg-[#a89060]">
         {/* Mobile: Menu Left */}
         <div className="flex items-center lg:hidden">
           <Sheet>
@@ -133,25 +133,48 @@ export function Header() {
               <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", productDropdownOpen && "rotate-180")} />
             </button>
             {productDropdownOpen && (
-              <div className="absolute left-0 top-full mt-3 w-48 overflow-hidden rounded-lg border border-border bg-background shadow-lg">
-                <Link
-                  href="/colecciones"
-                  onClick={() => setProductDropdownOpen(false)}
-                  className="block px-4 py-3 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
-                >
-                  Ver todos
-                </Link>
-                <div className="border-t border-border" />
-                {productCategories.map((cat) => (
+              <div className="absolute left-1/2 top-full mt-4 -translate-x-1/2 w-[280px] overflow-hidden rounded-xl border border-border/60 bg-background/95 backdrop-blur-xl shadow-2xl shadow-black/10">
+                <div className="px-5 pt-5 pb-3">
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Colecciones</span>
+                </div>
+                <div className="px-3 pb-2">
                   <Link
-                    key={cat.name}
-                    href={cat.href}
+                    href="/colecciones"
                     onClick={() => setProductDropdownOpen(false)}
-                    className="block px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
+                    className="group flex items-center gap-3 rounded-lg px-3 py-3 transition-all hover:bg-[#a89060]/10"
                   >
-                    {cat.name}
+                    <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-[#a89060]/10 text-[#a89060] transition-colors group-hover:bg-[#a89060] group-hover:text-[#FFFFFF]">
+                      <svg xmlns="http://www.w3.org/2000/svg" className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" /></svg>
+                    </span>
+                    <div>
+                      <span className="block text-sm font-bold text-foreground">Ver todos</span>
+                      <span className="block text-[11px] font-medium text-muted-foreground">Explora el catalogo completo</span>
+                    </div>
                   </Link>
-                ))}
+                </div>
+                <div className="mx-5 border-t border-border/50" />
+                <div className="px-3 py-2">
+                  {productCategories.map((cat) => (
+                    <Link
+                      key={cat.name}
+                      href={cat.href}
+                      onClick={() => setProductDropdownOpen(false)}
+                      className="group flex items-center gap-3 rounded-lg px-3 py-2.5 transition-all hover:bg-[#a89060]/10"
+                    >
+                      <span className="h-1.5 w-1.5 rounded-full bg-border transition-colors group-hover:bg-[#a89060]" />
+                      <span className="text-sm font-semibold text-foreground/80 transition-colors group-hover:text-foreground">{cat.name}</span>
+                    </Link>
+                  ))}
+                </div>
+                <div className="border-t border-border/50 bg-muted/30 px-5 py-3">
+                  <Link
+                    href="/novedades"
+                    onClick={() => setProductDropdownOpen(false)}
+                    className="text-[11px] font-bold uppercase tracking-widest text-[#a89060] transition-colors hover:text-[#a89060]/80"
+                  >
+                    Ver novedades →
+                  </Link>
+                </div>
               </div>
             )}
           </div>
@@ -189,7 +212,7 @@ export function Header() {
               <Button variant="ghost" size="icon" className="relative text-[#FFFFFF] hover:text-[#FFFFFF]/70 hover:bg-[#FFFFFF]/10">
                 <ShoppingBag className="h-5 w-5" />
                 {itemCount > 0 && (
-                  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FFFFFF] text-[10px] font-bold text-[#C8AD7F]">
+                  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FFFFFF] text-[10px] font-bold text-[#a89060]">
                     {itemCount}
                   </span>
                 )}
@@ -209,7 +232,7 @@ export function Header() {
             <Button variant="ghost" size="icon" className="relative text-[#FFFFFF] hover:text-[#FFFFFF]/70 hover:bg-[#FFFFFF]/10">
               <ShoppingBag className="h-5 w-5" />
               {itemCount > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FFFFFF] text-[10px] font-bold text-[#C8AD7F]">
+                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FFFFFF] text-[10px] font-bold text-[#a89060]">
                   {itemCount}
                 </span>
               )}
