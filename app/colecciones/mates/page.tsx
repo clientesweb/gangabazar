@@ -26,7 +26,7 @@ export default function MatesPage() {
         {/* Hero */}
         <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
           <img
-            src="/images/category-mates.jpg"
+            src="/images/category-mates.webp"
             alt="Mates personalizados"
             className="h-full w-full object-cover"
           />
