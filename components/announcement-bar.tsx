@@ -3,8 +3,8 @@
 export function AnnouncementBar() {
   const announcements = [
     "Personalizamos cada producto con grabado laser",
-    "Pagas al recibir tu pedido",
-    "Regalos personalizados para toda ocasion",
+    "A partir de $100.000 envíos gratis CABA Y GBA",
+    "Seguinos en redes @gangabazar_"
   ]
 
   const duplicatedAnnouncements = [...announcements, ...announcements, ...announcements, ...announcements]
