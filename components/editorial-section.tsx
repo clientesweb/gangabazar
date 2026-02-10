@@ -10,13 +10,13 @@ const editorialImages = [
   },
   {
     id: 2,
-    image: "/images/grabado-laser.jpg",
+    image: "/images/insta-3.webp",
     alt: "Grabado laser de precision",
     aspect: "aspect-[4/5]",
   },
   {
     id: 3,
-    image: "/images/category-mates.jpg",
+    image: "https://ckeksovupbzweqfrniho.supabase.co/storage/v1/object/public/product-images/products/673ec52f-e5bb-45b4-9e92-35677a464392/main/1770654242756.jpeg",
     alt: "Mates artesanales",
     aspect: "aspect-[3/4]",
   },
