@@ -20,6 +20,7 @@ const productCategories = [
   { name: "Termos", href: "/colecciones/termos" },
   { name: "Mates", href: "/colecciones/mates" },
   { name: "Accesorios", href: "/colecciones/accesorios" },
+  { name: "Grabados", href: "/colecciones/grabados" },
 ]
 
 const rightNav = [
@@ -257,7 +258,7 @@ export function Header() {
                   <Search className="absolute left-0 top-1/2 h-6 w-6 -translate-y-1/2 text-muted-foreground" />
                   <Input
                     type="search"
-                    placeholder="Buscar termos, mates, accesorios..."
+                    placeholder="Buscar termos, mates, accesorios, grabados..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
                     autoFocus

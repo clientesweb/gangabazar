@@ -7,6 +7,9 @@ import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { type Product } from "@/lib/services/products"
 import { getNewProductsWithDetails, generateSlug } from "@/lib/services/products"
+import { getNewGrabadosWithDetails } from "@/lib/services/grabados"
+
+type NewItem = (Product | any) & { type?: string }
 
 interface NewArrivalsSectionProps {
   products?: Product[]
@@ -17,13 +20,22 @@ export function NewArrivalsSection({ products: serverProducts }: NewArrivalsSect
   const [favorites, setFavorites] = useState<string[]>([])
   const [canScrollLeft, setCanScrollLeft] = useState(false)
   const [canScrollRight, setCanScrollRight] = useState(true)
-  const [newArrivals, setNewArrivals] = useState<Product[]>(serverProducts || [])
+  const [newItems, setNewItems] = useState<NewItem[]>(serverProducts || [])
   const [loading, setLoading] = useState(!serverProducts)
 
   useEffect(() => {
     if (!serverProducts) {
-      getNewProductsWithDetails(8)
-        .then(setNewArrivals)
+      Promise.all([
+        getNewProductsWithDetails(4),
+        getNewGrabadosWithDetails(4)
+      ])
+        .then(([products, grabados]) => {
+          const items = [
+            ...products.map(p => ({ ...p, type: 'product' })),
+            ...grabados.map(g => ({ ...g, type: 'grabado' }))
+          ]
+          setNewItems(items)
+        })
         .catch(console.error)
         .finally(() => setLoading(false))
     }
@@ -111,16 +123,19 @@ export function NewArrivalsSection({ products: serverProducts }: NewArrivalsSect
           className="mt-10 flex gap-5 overflow-x-auto scroll-smooth pb-4 sm:mt-12 scrollbar-hide"
           style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
         >
-          {newArrivals.map((product) => (
+          {newItems.map((item) => {
+            const isGrabado = item.type === 'grabado'
+            const href = isGrabado ? `/grabado/${item.slug}` : `/producto/${generateSlug(item.name)}`
+            return (
             <div
-              key={product.id}
+              key={item.id}
               className="group w-[260px] flex-shrink-0 sm:w-[280px] lg:w-[300px]"
             >
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-muted">
-                <Link href={`/producto/${generateSlug(product.name)}`}>
+                <Link href={href}>
                   <img
-                    src={product.mainImage || "/placeholder.svg"}
-                    alt={product.name}
+                    src={item.mainImage || "/placeholder.svg"}
+                    alt={item.name}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </Link>
@@ -128,10 +143,10 @@ export function NewArrivalsSection({ products: serverProducts }: NewArrivalsSect
                   Nuevo
                 </span>
                 <button
-                  onClick={() => toggleFavorite(product.id)}
+                  onClick={() => toggleFavorite(item.id)}
                   className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#1A1A1A]/80 backdrop-blur transition-all hover:bg-[#1A1A1A]"
                   aria-label={
-                    favorites.includes(product.id)
+                    favorites.includes(item.id)
                       ? "Quitar de favoritos"
                       : "Agregar a favoritos"
                   }
@@ -139,35 +154,36 @@ export function NewArrivalsSection({ products: serverProducts }: NewArrivalsSect
                   <Heart
                     className={cn(
                       "h-5 w-5 transition-colors",
-                      favorites.includes(product.id)
+                      favorites.includes(item.id)
                         ? "fill-[#FFFFFF] text-[#FFFFFF]"
                         : "text-[#FFFFFF]",
                     )}
                   />
                 </button>
               </div>
-              <Link href={`/producto/${generateSlug(product.name)}`} className="block">
+              <Link href={href} className="block">
                 <div className="mt-4">
                   <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">
-                    {product.tagline}
+                    {item.tagline}
                   </span>
                   <h3 className="mt-1 text-base font-bold text-foreground">
-                    {product.name}
+                    {item.name}
                   </h3>
                   <div className="mt-1 flex items-center gap-2">
                     <p className="text-sm font-bold text-foreground">
-                      ${product.price.toLocaleString()}
+                      ${item.price.toLocaleString()}
                     </p>
-                    {product.originalPrice && (
+                    {item.originalPrice && (
                       <p className="text-xs text-muted-foreground line-through">
-                        ${product.originalPrice.toLocaleString()}
+                        ${item.originalPrice.toLocaleString()}
                       </p>
                     )}
                   </div>
                 </div>
               </Link>
             </div>
-          ))}
+            )
+          })}
         </div>
 
         {/* Mobile scroll arrows */}

@@ -5,6 +5,7 @@ import Link from "next/link"
 import { Heart } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { getImagesByProductId } from "@/lib/services/images"
+import { getImagesByGrabadoId } from "@/lib/services/grabado-images"
 import type { Product } from "@/lib/services/products"
 import { generateSlug } from "@/lib/services/products"
 
@@ -18,12 +19,17 @@ export function ProductCard({ product }: ProductCardProps) {
   const [images, setImages] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
+  // Detectar si es grabado o producto basado en la categoría
+  const isGrabado = product.category === 'grabados'
+  const baseRoute = isGrabado ? '/grabado' : '/producto'
+
   useEffect(() => {
-    getImagesByProductId(product.id)
+    const getImages = isGrabado ? getImagesByGrabadoId : getImagesByProductId
+    getImages(product.id)
       .then(setImages)
       .catch(() => setImages([]))
       .finally(() => setLoading(false))
-  }, [product.id])
+  }, [product.id, isGrabado])
 
   // Get main image or first image
   const mainImage = images.find((img) => img.is_main) || images[0]
@@ -33,7 +39,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <div className="group" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-      <Link href={`/producto/${generateSlug(product.name)}`} className="block">
+      <Link href={`${baseRoute}/${generateSlug(product.name)}`} className="block">
         <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-muted">
           <img
             src={isHovered && hoverImageUrl ? hoverImageUrl : imageUrl}

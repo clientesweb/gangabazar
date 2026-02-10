@@ -8,6 +8,9 @@ import { cn } from "@/lib/utils"
 import { useCart } from "@/lib/cart"
 import { type Product } from "@/lib/services/products"
 import { getFeaturedProductsWithDetails, generateSlug } from "@/lib/services/products"
+import { getFeaturedGrabadosWithDetails } from "@/lib/services/grabados"
+
+type FeaturedItem = (Product | any) & { type?: string }
 
 interface FeaturedProductsProps {
   products?: Product[]
@@ -17,14 +20,23 @@ export function FeaturedProducts({ products: serverProducts }: FeaturedProductsP
   const [favorites, setFavorites] = useState<string[]>([])
   const [selectedSizes, setSelectedSizes] = useState<Record<string, string>>({})
   const [addedToCart, setAddedToCart] = useState<string | null>(null)
-  const [featuredProducts, setFeaturedProducts] = useState<Product[]>(serverProducts || [])
+  const [featuredItems, setFeaturedItems] = useState<FeaturedItem[]>(serverProducts || [])
   const [loading, setLoading] = useState(!serverProducts)
   const { addItem } = useCart()
 
   useEffect(() => {
     if (!serverProducts) {
-      getFeaturedProductsWithDetails(4)
-        .then(setFeaturedProducts)
+      Promise.all([
+        getFeaturedProductsWithDetails(2),
+        getFeaturedGrabadosWithDetails(2)
+      ])
+        .then(([products, grabados]) => {
+          const items = [
+            ...products.map(p => ({ ...p, type: 'product' })),
+            ...grabados.map(g => ({ ...g, type: 'grabado' }))
+          ]
+          setFeaturedItems(items)
+        })
         .catch(console.error)
         .finally(() => setLoading(false))
     }
@@ -76,49 +88,52 @@ export function FeaturedProducts({ products: serverProducts }: FeaturedProductsP
         </div>
 
         <div className="mt-10 grid gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
-          {featuredProducts.map((product: any) => (
-            <div key={product.id} className="group">
+          {featuredItems.map((item: any) => {
+            const isGrabado = item.type === 'grabado'
+            const href = isGrabado ? `/grabado/${item.slug}` : `/producto/${generateSlug(item.name)}`
+            return (
+            <div key={item.id} className="group">
               <div className="relative aspect-[4/5] overflow-hidden rounded-2xl bg-muted">
-                <Link href={`/producto/${generateSlug(product.name)}`}>
+                <Link href={href}>
                   <img
-                    src={product.mainImage || product.image || "/placeholder.svg"}
-                    alt={product.name}
+                    src={item.mainImage || item.image || "/placeholder.svg"}
+                    alt={item.name}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </Link>
-                {product.isNew && (
+                {item.isNew && (
                   <span className="absolute left-4 top-4 rounded-full bg-[#1A1A1A] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#FFFFFF]">
                     Nuevo
                   </span>
                 )}
                 <button
-                  onClick={() => toggleFavorite(product.id)}
+                  onClick={() => toggleFavorite(item.id)}
                   className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#1A1A1A]/80 backdrop-blur transition-all hover:bg-[#1A1A1A]"
                 >
                   <Heart
                     className={cn(
                       "h-5 w-5 transition-colors",
-                      favorites.includes(product.id) ? "fill-[#FFFFFF] text-[#FFFFFF]" : "text-[#FFFFFF]",
+                      favorites.includes(item.id) ? "fill-[#FFFFFF] text-[#FFFFFF]" : "text-[#FFFFFF]",
                     )}
                   />
                 </button>
                 <div className="absolute bottom-0 left-0 right-0 translate-y-full rounded-b-2xl bg-primary p-4 transition-transform duration-300 group-hover:translate-y-0">
-                  {addedToCart === product.id ? (
+                  {addedToCart === item.id ? (
                     <div className="flex items-center justify-center gap-2 py-4 text-primary-foreground">
                       <Check className="h-5 w-5" />
                       <span className="text-xs font-bold uppercase tracking-widest">Agregado</span>
                     </div>
                   ) : (
                     <>
-                      {product.sizes && product.sizes.length > 0 && (
+                      {item.sizes && item.sizes.length > 0 && (
                         <div className="mb-3 flex justify-center gap-2">
-                          {product.sizes.map((size) => (
+                          {item.sizes.map((size) => (
                             <button
                               key={size}
-                              onClick={() => setSelectedSizes((prev) => ({ ...prev, [product.id]: size }))}
+                              onClick={() => setSelectedSizes((prev) => ({ ...prev, [item.id]: size }))}
                               className={cn(
                                 "flex h-8 items-center justify-center rounded-full border px-3 text-xs font-semibold transition-colors cursor-pointer",
-                                selectedSizes[product.id] === size
+                                selectedSizes[item.id] === size
                                   ? "border-primary-foreground bg-primary-foreground text-primary"
                                   : "border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10",
                               )}
@@ -130,8 +145,8 @@ export function FeaturedProducts({ products: serverProducts }: FeaturedProductsP
                       )}
                       <Button
                         onClick={() => {
-                          const size = selectedSizes[product.id] || (product.sizes?.[0]) || "Único"
-                          handleAddToCart(product, size)
+                          const size = selectedSizes[item.id] || (item.sizes?.[0]) || "Único"
+                          handleAddToCart(item, size)
                         }}
                         className="w-full rounded-full bg-transparent text-xs font-bold uppercase tracking-widest text-primary-foreground hover:bg-primary-foreground/10"
                       >
@@ -141,15 +156,16 @@ export function FeaturedProducts({ products: serverProducts }: FeaturedProductsP
                   )}
                 </div>
               </div>
-              <Link href={`/producto/${generateSlug(product.name)}`} className="block">
+              <Link href={href} className="block">
                 <div className="mt-4">
-                  <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{product.tagline}</span>
-                  <h3 className="mt-1 text-base font-bold text-foreground">{product.name}</h3>
-                  <p className="mt-1 text-sm font-bold text-foreground">${product.price.toLocaleString()}</p>
+                  <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{item.tagline}</span>
+                  <h3 className="mt-1 text-base font-bold text-foreground">{item.name}</h3>
+                  <p className="mt-1 text-sm font-bold text-foreground">${item.price.toLocaleString()}</p>
                 </div>
               </Link>
             </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </section>
