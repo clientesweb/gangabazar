@@ -11,8 +11,11 @@ import { useAuth } from '@/hooks/use-auth'
 const menuItems = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: BarChart3 },
   { href: '/admin/productos', label: 'Productos', icon: Package },
-  { href: '/admin/variantes', label: 'Variantes', icon: Palette },
-  { href: '/admin/imagenes', label: 'Imágenes', icon: ImageIcon },
+  { href: '/admin/variantes', label: 'P. Variantes', icon: Palette },
+  { href: '/admin/imagenes', label: 'P. Imágenes', icon: ImageIcon },
+  { href: '/admin/grabados', label: 'Grabados', icon: Package },
+  { href: '/admin/grabado-variantes', label: 'G. Variantes', icon: Palette },
+  { href: '/admin/grabado-imagenes', label: 'G. Imágenes', icon: ImageIcon },
 ]
 
 export default function ProtectedLayout({ children }: { children: React.ReactNode }) {

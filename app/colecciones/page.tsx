@@ -21,6 +21,12 @@ const collections = [
     image: "/images/category-accesorios.jpg",
     href: "/colecciones/accesorios",
   },
+  {
+    name: "Grabados",
+    description: "Artículos personalizados con grabado laser. Diseños únicos para cada ocasión.",
+    image: "/images/category-grabados.jpg",
+    href: "/colecciones/grabados",
+  },
 ]
 
 export default function ColeccionesPage() {

@@ -5,34 +5,49 @@ import { useSearchParams } from "next/navigation"
 import { Search, Loader2 } from "lucide-react"
 import { ProductCard } from "@/components/product-card"
 import { getProducts, type Product } from "@/lib/services/products"
+import { getGrabados, type Grabado } from "@/lib/services/grabados"
 import { Input } from "@/components/ui/input"
+
+type SearchResult = (Product | Grabado) & { type?: string }
 
 export function SearchContent() {
   const searchParams = useSearchParams()
   const initialQuery = searchParams.get("q") || ""
   const [query, setQuery] = useState(initialQuery)
-  const [products, setProducts] = useState<Product[]>([])
+  const [results, setResults] = useState<SearchResult[]>([])
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    getProducts()
-      .then(setProducts)
-      .catch(console.error)
-      .finally(() => setLoading(false))
+    const loadData = async () => {
+      try {
+        const [products, grabados] = await Promise.all([getProducts(), getGrabados()])
+        const allResults: SearchResult[] = [
+          ...products.map(p => ({ ...p, type: 'product' })),
+          ...grabados.map(g => ({ ...g, type: 'grabado' }))
+        ]
+        setResults(allResults)
+      } catch (err) {
+        console.error('Error loading search data:', err)
+      } finally {
+        setLoading(false)
+      }
+    }
+
+    loadData()
   }, [])
 
-  const results = useMemo(() => {
+  const filteredResults = useMemo(() => {
     if (!query.trim()) return []
     const searchTerm = query.toLowerCase()
-    return products.filter(
-      (product) =>
-        product.name.toLowerCase().includes(searchTerm) ||
-        product.tagline.toLowerCase().includes(searchTerm) ||
-        product.description.toLowerCase().includes(searchTerm) ||
-        product.subcategory.toLowerCase().includes(searchTerm) ||
-        product.category.toLowerCase().includes(searchTerm),
+    return results.filter(
+      (item) =>
+        item.name.toLowerCase().includes(searchTerm) ||
+        item.tagline?.toLowerCase().includes(searchTerm) ||
+        item.description.toLowerCase().includes(searchTerm) ||
+        item.subcategory?.toLowerCase().includes(searchTerm) ||
+        (item.type === 'product' && (item as Product).category.toLowerCase().includes(searchTerm)),
     )
-  }, [query, products])
+  }, [query, results])
 
   return (
     <>
