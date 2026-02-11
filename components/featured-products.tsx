@@ -26,7 +26,7 @@ export function FeaturedProducts({ products: serverProducts }: FeaturedProductsP
   useEffect(() => {
     if (!serverProducts) {
       Promise.all([
-        getFeaturedProductsWithDetails(4),
+        getFeaturedProductsWithDetails(6),
         getFeaturedGrabadosWithDetails(2)
       ])
         .then(([products, grabados]) => {
