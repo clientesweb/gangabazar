@@ -3,6 +3,7 @@ import type { Metadata, Viewport } from "next"
 import { Nunito, Fredoka } from "next/font/google"
 import { Analytics } from "@vercel/analytics/next"
 import { CartProvider } from "@/lib/cart"
+import { WhatsAppButton } from "@/components/whatsapp-button"
 import "./globals.css"
 
 const nunito = Nunito({
@@ -75,7 +76,7 @@ export const metadata: Metadata = {
 }
 
 export const viewport: Viewport = {
-  themeColor: "#a89060",
+  themeColor: "#C8AD7F",
   width: "device-width",
   initialScale: 1,
 }
@@ -90,7 +91,10 @@ export default function RootLayout({
       <body
         className={`${nunito.variable} ${fredoka.variable} font-sans antialiased`}
       >
-        <CartProvider>{children}</CartProvider>
+        <CartProvider>
+          {children}
+          <WhatsAppButton />
+        </CartProvider>
         <Analytics />
       </body>
     </html>

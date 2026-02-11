@@ -3,8 +3,12 @@
 import { createContext, useContext, useState, useEffect, type ReactNode } from "react"
 import type { Product } from "./products"
 
+export interface CartProduct extends Product {
+  mainImage?: string
+}
+
 export interface CartItem {
-  product: Product
+  product: CartProduct
   quantity: number
   size: string
   color: string
@@ -12,7 +16,7 @@ export interface CartItem {
 
 interface CartContextType {
   items: CartItem[]
-  addItem: (product: Product, size: string, color: string, quantity?: number) => void
+  addItem: (product: CartProduct, size: string, color: string, quantity?: number) => void
   removeItem: (productId: string, size: string, color: string) => void
   updateQuantity: (productId: string, size: string, color: string, quantity: number) => void
   clearCart: () => void
@@ -42,7 +46,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("ganga-bazar-cart", JSON.stringify(items))
   }, [items])
 
-  const addItem = (product: Product, size: string, color: string, quantity = 1) => {
+  const addItem = (product: CartProduct, size: string, color: string, quantity = 1) => {
     setItems((prev) => {
       const existingIndex = prev.findIndex(
         (item) => item.product.id === product.id && item.size === size && item.color === color,

@@ -64,7 +64,7 @@ export default function CheckoutPage() {
         <main className="flex min-h-[60vh] items-center justify-center px-4">
           <div className="text-center">
             <h1 className="font-serif text-2xl font-light text-foreground">No hay productos en tu carrito</h1>
-            <Link href="/colecciones">
+            <Link href="/categorias">
               <Button className="mt-6 rounded-none bg-primary px-8 py-6 text-primary-foreground hover:bg-primary/90">
                 Explorar coleccion
               </Button>
@@ -316,7 +316,7 @@ export default function CheckoutPage() {
                     <div key={`${item.product.id}-${item.size}-${item.color}`} className="flex gap-4">
                       <div className="relative h-20 w-16 flex-shrink-0 overflow-hidden bg-muted">
                         <img
-                          src={item.product.image || "/placeholder.svg"}
+                          src={item.product.mainImage || item.product.image || "/placeholder.svg"}
                           alt={item.product.name}
                           className="h-full w-full object-cover"
                         />

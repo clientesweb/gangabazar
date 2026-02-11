@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 import { useCart } from "@/lib/cart"
 import { cn } from "@/lib/utils"
-import { generateSlug } from "@/lib/services/products"
+import { generateSlug, generateProductUrl } from "@/lib/services/products"
 
 interface ProductDetailProps {
   product: any
@@ -65,7 +65,7 @@ export function ProductDetailClient({ product, relatedProducts = [] }: ProductDe
               Inicio
             </Link>
             <span>/</span>
-            <Link href={`/colecciones/${product.category}`} className="hover:text-accent">
+            <Link href={`/categorias/${product.category}`} className="hover:text-accent">
               {categoryLabels[product.category] || product.category}
             </Link>
             <span>/</span>

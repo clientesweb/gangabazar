@@ -40,7 +40,7 @@ export default function OrderConfirmationPage() {
                 Volver al inicio
               </Button>
             </Link>
-            <Link href="/colecciones" className="block">
+            <Link href="/categorias" className="block">
               <Button
                 variant="outline"
                 className="w-full h-14 rounded-none border-border text-foreground hover:bg-muted bg-transparent"

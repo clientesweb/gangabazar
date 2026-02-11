@@ -59,7 +59,7 @@ export function GrabadoDetailClient({ grabado, relatedGrabados = [] }: GrabadoDe
               Inicio
             </Link>
             <span>/</span>
-            <Link href="/colecciones/grabados" className="hover:text-accent">
+            <Link href="/categorias/grabados" className="hover:text-accent">
               Grabados
             </Link>
             <span>/</span>

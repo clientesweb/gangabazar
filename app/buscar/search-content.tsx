@@ -91,7 +91,7 @@ export function SearchContent() {
                 Proba con otras palabras o explora nuestros productos.
               </p>
               <a
-                href="/colecciones"
+                href="/categorias"
                 className="mt-6 inline-block text-sm uppercase tracking-widest text-foreground underline underline-offset-4 transition-colors hover:text-accent"
               >
                 Ver productos

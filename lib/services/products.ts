@@ -19,6 +19,19 @@ export function generateSlug(name: string): string {
     .replace(/\s+/g, '-')
 }
 
+// Helper function to generate the full product URL based on category
+export function generateProductUrl(product: { name: string; category: string }): string {
+  const slug = generateSlug(product.name)
+  const categoryRoutes: Record<string, string> = {
+    termos: '/termos',
+    mates: '/mates',
+    accesorios: '/accesorios',
+    grabados: '/grabados',
+  }
+  const base = categoryRoutes[product.category] || '/termos'
+  return `${base}/${slug}`
+}
+
 // Find product by slug or ID
 export async function getProductBySlugOrId(slugOrId: string) {
   // First try to find by ID (in case it's a UUID)

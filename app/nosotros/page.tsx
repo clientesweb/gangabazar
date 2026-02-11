@@ -97,7 +97,7 @@ export default function NosotrosPage() {
             </h2>
             <p className="mt-4 font-medium text-muted-foreground">Explora nuestros productos y encontra el regalo perfecto.</p>
             <a
-              href="/colecciones"
+              href="/categorias"
               className="mt-8 inline-block rounded-full bg-primary px-8 py-4 text-xs font-bold uppercase tracking-widest text-primary-foreground transition-colors hover:bg-primary/90"
             >
               Ver productos
