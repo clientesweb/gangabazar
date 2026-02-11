@@ -11,7 +11,7 @@ export function StylingConsultationSection() {
           <div className="relative">
             <div className="aspect-[4/5] overflow-hidden rounded-3xl">
               <Image
-                src="/images/grabado-laser.jpg"
+                src="/images/grabado.webp"
                 alt="Grabado laser personalizado"
                 fill
                 className="object-cover"
@@ -45,10 +45,6 @@ export function StylingConsultationSection() {
               </li>
               <li className="flex items-start gap-3">
                 <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
-                <span>Entrega en el dia en San Martin, Bs. As.</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="mt-1 h-2 w-2 shrink-0 rounded-full bg-primary" />
                 <span>Precios especiales para empresas y eventos</span>
               </li>
             </ul>
@@ -59,8 +55,8 @@ export function StylingConsultationSection() {
                 size="lg"
                 className="group rounded-full bg-primary px-8 font-bold text-primary-foreground hover:bg-primary/90"
               >
-                <a href="https://wa.me/5491130163458" target="_blank" rel="noopener noreferrer">
-                  Consultar por WhatsApp
+                <a href="https://www.gangabazar.com.ar/categorias/grabados" target="_blank" rel="noopener noreferrer">
+                  ¡Mira todo!
                   <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </a>
               </Button>
