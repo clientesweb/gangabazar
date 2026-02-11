@@ -11,7 +11,7 @@ export function StylingConsultationSection() {
           <div className="relative">
             <div className="aspect-[4/5] overflow-hidden rounded-3xl">
               <Image
-                src="/images/grabado.webp"
+                src="/images/grabados.webp"
                 alt="Grabado laser personalizado"
                 fill
                 className="object-cover"
