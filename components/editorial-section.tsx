@@ -4,19 +4,19 @@ import { ArrowRight } from "lucide-react"
 const editorialImages = [
   {
     id: 1,
-    image: "/images/category-termos.jpg",
+    image: "https://ckeksovupbzweqfrniho.supabase.co/storage/v1/object/public/product-images/products/ba36342d-91dc-4791-978d-ff2701cc7858/main/1770772004401.jpeg",
     alt: "Termos personalizados",
     aspect: "aspect-[3/4]",
   },
   {
     id: 2,
-    image: "/images/grabado-laser.jpg",
+    image: "/images/insta-3.webp",
     alt: "Grabado laser de precision",
     aspect: "aspect-[4/5]",
   },
   {
     id: 3,
-    image: "/images/category-mates.jpg",
+    image: "https://ckeksovupbzweqfrniho.supabase.co/storage/v1/object/public/product-images/products/673ec52f-e5bb-45b4-9e92-35677a464392/main/1770654242756.jpeg",
     alt: "Mates artesanales",
     aspect: "aspect-[3/4]",
   },
