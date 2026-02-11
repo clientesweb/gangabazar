@@ -25,7 +25,7 @@ export default function GrabadosPage() {
         {/* Hero */}
         <section className="relative h-[50vh] min-h-[400px] overflow-hidden">
           <img
-            src="/images/category-grabados.jpg"
+            src="/images/grabados.webp"
             alt="Grabados personalizados"
             className="h-full w-full object-cover"
           />
