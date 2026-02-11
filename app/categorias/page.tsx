@@ -24,7 +24,7 @@ const collections = [
   {
     name: "Grabados",
     description: "Articulos personalizados con grabado laser. Disenos unicos para cada ocasion.",
-    image: "/images/category-grabados.jpg",
+    image: "/images/grabados.webp",
     href: "/categorias/grabados",
   },
 ]
