@@ -26,8 +26,8 @@ export function NewArrivalsSection({ products: serverProducts }: NewArrivalsSect
   useEffect(() => {
     if (!serverProducts) {
       Promise.all([
-        getNewProductsWithDetails(4),
-        getNewGrabadosWithDetails(4)
+        getNewProductsWithDetails(6),
+        getNewGrabadosWithDetails(2)
       ])
         .then(([products, grabados]) => {
           const items = [
