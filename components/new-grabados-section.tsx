@@ -129,13 +129,13 @@ export function NewGrabadosSection({ grabados: serverGrabados }: NewGrabadosSect
               >
                 <div className="relative aspect-square overflow-hidden rounded-xl bg-muted">
                   <img
-                    src={mainImage}
+                    src={mainImage || "/placeholder.svg"}
                     alt={grabado.name}
                     className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
 
                   {grabado.is_new && (
-                    <span className="absolute left-3 top-3 rounded-full bg-[#1A1A1A] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
+                    <span className="absolute left-3 top-3 rounded-full bg-[#C8AD7F] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
                       Nuevo
                     </span>
                   )}
@@ -145,7 +145,7 @@ export function NewGrabadosSection({ grabados: serverGrabados }: NewGrabadosSect
                       e.preventDefault()
                       toggleFavorite(grabado.id)
                     }}
-                    className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#1A1A1A]/80 backdrop-blur transition-all hover:bg-[#1A1A1A]"
+                    className="absolute right-3 top-3 flex h-10 w-10 items-center justify-center rounded-full bg-[#4F4D46]/70 backdrop-blur transition-all hover:bg-[#C8AD7F]"
                   >
                     <Heart className={cn("h-5 w-5", isFavorite ? "fill-white text-white" : "text-white")} />
                   </button>

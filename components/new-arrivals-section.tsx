@@ -6,7 +6,7 @@ import { ChevronLeft, ChevronRight, Heart } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 import { type Product } from "@/lib/services/products"
-import { getNewProductsWithDetails, generateSlug } from "@/lib/services/products"
+import { getNewProductsWithDetails, generateSlug, generateProductUrl } from "@/lib/services/products"
 import { getNewGrabadosWithDetails } from "@/lib/services/grabados"
 
 type NewItem = (Product | any) & { type?: string }
@@ -125,7 +125,7 @@ export function NewArrivalsSection({ products: serverProducts }: NewArrivalsSect
         >
           {newItems.map((item) => {
             const isGrabado = item.type === 'grabado'
-            const href = isGrabado ? `/grabado/${item.slug}` : `/producto/${generateSlug(item.name)}`
+            const href = isGrabado ? `/grabados/${item.slug || generateSlug(item.name)}` : generateProductUrl(item)
             return (
             <div
               key={item.id}
@@ -139,12 +139,12 @@ export function NewArrivalsSection({ products: serverProducts }: NewArrivalsSect
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </Link>
-                <span className="absolute left-4 top-4 rounded-full bg-[#1A1A1A] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#FFFFFF]">
+                <span className="absolute left-4 top-4 rounded-full bg-[#C8AD7F] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#FFFFFF]">
                   Nuevo
                 </span>
                 <button
                   onClick={() => toggleFavorite(item.id)}
-                  className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#1A1A1A]/80 backdrop-blur transition-all hover:bg-[#1A1A1A]"
+                  className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#4F4D46]/70 backdrop-blur transition-all hover:bg-[#C8AD7F]"
                   aria-label={
                     favorites.includes(item.id)
                       ? "Quitar de favoritos"

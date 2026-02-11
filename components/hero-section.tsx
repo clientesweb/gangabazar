@@ -36,7 +36,7 @@ export function HeroSection() {
             size="lg"
             className="group h-14 rounded-full bg-[#a89060] px-10 text-sm font-bold uppercase tracking-wider text-[#FFFFFF] transition-all hover:bg-[#a89060]/90 sm:px-14"
           >
-            <Link href="/colecciones">
+            <Link href="/categorias">
               Ver productos
               <ArrowRight className="ml-3 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>

@@ -62,7 +62,7 @@ export function FeaturedGrabados({ grabados: serverGrabados }: FeaturedGrabadosP
             <p className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Destacados</p>
             <h2 className="mt-2 text-4xl font-bold text-foreground">Grabados Destacados</h2>
           </div>
-          <Link href="/colecciones/grabados" className="inline-flex items-center gap-2 font-semibold text-foreground hover:text-accent">
+          <Link href="/categorias/grabados" className="inline-flex items-center gap-2 font-semibold text-foreground hover:text-accent">
             Ver todos
             <ArrowRight className="h-4 w-4" />
           </Link>
@@ -78,30 +78,30 @@ export function FeaturedGrabados({ grabados: serverGrabados }: FeaturedGrabadosP
             return (
               <div key={grabado.id} className="group">
                 <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-muted">
-                  <Link href={`/grabado/${slug}`}>
+                  <Link href={`/grabados/${slug}`}>
                     <img
-                      src={mainImage}
+                      src={mainImage || "/placeholder.svg"}
                       alt={grabado.name}
                       className="h-full w-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                   </Link>
 
                   {grabado.is_new && (
-                    <span className="absolute left-4 top-4 rounded-full bg-[#1A1A1A] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
+                    <span className="absolute left-4 top-4 rounded-full bg-[#C8AD7F] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
                       Nuevo
                     </span>
                   )}
 
                   <button
                     onClick={() => toggleFavorite(grabado.id)}
-                    className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#1A1A1A]/80 backdrop-blur transition-all hover:bg-[#1A1A1A]"
+                    className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#4F4D46]/70 backdrop-blur transition-all hover:bg-[#C8AD7F]"
                   >
                     <Heart className={cn("h-5 w-5", isFavorite ? "fill-white text-white" : "text-white")} />
                   </button>
                 </div>
 
                 <div className="mt-4">
-                  <Link href={`/grabado/${slug}`}>
+                  <Link href={`/grabados/${slug}`}>
                     <h3 className="text-base font-bold text-foreground hover:text-accent transition-colors">{grabado.name}</h3>
                   </Link>
                   <p className="mt-1 text-sm text-muted-foreground">{grabado.tagline}</p>
@@ -130,7 +130,7 @@ export function FeaturedGrabados({ grabados: serverGrabados }: FeaturedGrabadosP
                     onClick={() => handleAddToCart(grabado, selectedColors[grabado.id] || defaultColor)}
                     className={cn(
                       "mt-4 w-full",
-                      addedToCart === grabado.id ? "bg-green-600 hover:bg-green-600" : "bg-[#C8AD7F] hover:bg-[#B89A5E] text-[#1A1A1A]"
+                      addedToCart === grabado.id ? "bg-[#4F4D46] hover:bg-[#4F4D46] text-[#FFFFFF]" : "bg-[#a89060] hover:bg-[#C8AD7F] text-[#FFFFFF]"
                     )}
                   >
                     {addedToCart === grabado.id ? (

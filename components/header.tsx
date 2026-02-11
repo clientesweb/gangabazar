@@ -17,10 +17,10 @@ import { Input } from "@/components/ui/input"
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion"
 
 const productCategories = [
-  { name: "Termos", href: "/colecciones/termos" },
-  { name: "Mates", href: "/colecciones/mates" },
-  { name: "Accesorios", href: "/colecciones/accesorios" },
-  { name: "Grabados", href: "/colecciones/grabados" },
+  { name: "Termos", href: "/categorias/termos" },
+  { name: "Mates", href: "/categorias/mates" },
+  { name: "Accesorios", href: "/categorias/accesorios" },
+  { name: "Grabados", href: "/categorias/grabados" },
 ]
 
 const rightNav = [
@@ -59,12 +59,12 @@ export function Header() {
     <header className="sticky top-0 z-50 w-full">
       <AnnouncementBar />
 
-      <nav className="relative mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:h-20 lg:px-8 bg-[#a89060]">
+      <nav className="relative mx-auto flex h-16 items-center justify-between px-4 sm:px-6 lg:h-20 lg:px-8 bg-[#C8AD7F]">
         {/* Mobile: Menu Left */}
         <div className="flex items-center lg:hidden">
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="text-[#FFFFFF] hover:text-[#FFFFFF]/70 hover:bg-[#FFFFFF]/10">
+              <Button variant="ghost" size="icon" className="text-[#4F4D46] hover:text-[#4F4D46]/70 hover:bg-[#EDE8D0]/10">
                 <Menu className="h-5 w-5" />
                 <span className="sr-only">Abrir menu</span>
               </Button>
@@ -85,7 +85,7 @@ export function Header() {
                     <AccordionContent>
                       <div className="flex flex-col gap-3 pl-4 pt-2">
                         <Link
-                          href="/colecciones"
+                          href="/categorias"
                           className="text-base font-medium text-muted-foreground transition-colors hover:text-foreground"
                         >
                           Ver todos
@@ -121,14 +121,14 @@ export function Header() {
         <div className="hidden flex-1 items-center gap-x-10 lg:flex">
           <Link
             href="/"
-            className="text-sm font-bold uppercase tracking-widest text-[#FFFFFF] transition-colors hover:text-[#FFFFFF]/70"
+            className="text-sm font-bold uppercase tracking-widest text-[#EDE8D0] transition-colors hover:text-[#a89060]"
           >
             Inicio
           </Link>
           <div ref={dropdownRef} className="relative">
             <button
               onClick={() => setProductDropdownOpen(!productDropdownOpen)}
-              className="flex items-center gap-1.5 text-sm font-bold uppercase tracking-widest text-[#FFFFFF] transition-colors hover:text-[#FFFFFF]/70"
+              className="flex items-center gap-1.5 text-sm font-bold uppercase tracking-widest text-[#EDE8D0] transition-colors hover:text-[#a89060]"
             >
               Productos
               <ChevronDown className={cn("h-3.5 w-3.5 transition-transform", productDropdownOpen && "rotate-180")} />
@@ -136,11 +136,11 @@ export function Header() {
             {productDropdownOpen && (
               <div className="absolute left-1/2 top-full mt-4 -translate-x-1/2 w-[280px] overflow-hidden rounded-xl border border-border/60 bg-background/95 backdrop-blur-xl shadow-2xl shadow-black/10">
                 <div className="px-5 pt-5 pb-3">
-                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Colecciones</span>
+                  <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">Categorias</span>
                 </div>
                 <div className="px-3 pb-2">
                   <Link
-                    href="/colecciones"
+                    href="/categorias"
                     onClick={() => setProductDropdownOpen(false)}
                     className="group flex items-center gap-3 rounded-lg px-3 py-3 transition-all hover:bg-[#a89060]/10"
                   >
@@ -199,21 +199,21 @@ export function Header() {
             <Link
               key={item.name}
               href={item.href}
-              className="text-sm font-bold uppercase tracking-widest text-[#FFFFFF] transition-colors hover:text-[#FFFFFF]/70"
+              className="text-sm font-bold uppercase tracking-widest text-[#EDE8D0] transition-colors hover:text-[#a89060]"
             >
               {item.name}
             </Link>
           ))}
-          <div className="flex items-center gap-1 pl-4 border-l border-[#FFFFFF]/30">
-            <Button variant="ghost" size="icon" className="text-[#FFFFFF] hover:text-[#FFFFFF]/70 hover:bg-[#FFFFFF]/10" onClick={() => setSearchOpen(true)}>
+          <div className="flex items-center gap-1 pl-4 border-l border-[#EDE8D0]/30">
+            <Button variant="ghost" size="icon" className="text-[#EDE8D0] hover:text-[#EDE8D0]/70 hover:bg-[#EDE8D0]/10" onClick={() => setSearchOpen(true)}>
               <Search className="h-5 w-5" />
               <span className="sr-only">Buscar</span>
             </Button>
             <Link href="/carrito">
-              <Button variant="ghost" size="icon" className="relative text-[#FFFFFF] hover:text-[#FFFFFF]/70 hover:bg-[#FFFFFF]/10">
+              <Button variant="ghost" size="icon" className="relative text-[#EDE8D0] hover:text-[#EDE8D0]/70 hover:bg-[#EDE8D0]/10">
                 <ShoppingBag className="h-5 w-5" />
                 {itemCount > 0 && (
-                  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FFFFFF] text-[10px] font-bold text-[#a89060]">
+                  <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#a89060] text-[10px] font-bold text-[#FFFFFF]">
                     {itemCount}
                   </span>
                 )}
@@ -225,15 +225,15 @@ export function Header() {
 
         {/* Mobile: Right Actions */}
         <div className="flex items-center gap-1 lg:hidden">
-          <Button variant="ghost" size="icon" className="text-[#FFFFFF] hover:text-[#FFFFFF]/70 hover:bg-[#FFFFFF]/10" onClick={() => setSearchOpen(true)}>
+          <Button variant="ghost" size="icon" className="text-[#EDE8D0] hover:text-[#EDE8D0]/70 hover:bg-[#EDE8D0]/10" onClick={() => setSearchOpen(true)}>
             <Search className="h-5 w-5" />
             <span className="sr-only">Buscar</span>
           </Button>
           <Link href="/carrito">
-            <Button variant="ghost" size="icon" className="relative text-[#FFFFFF] hover:text-[#FFFFFF]/70 hover:bg-[#FFFFFF]/10">
+            <Button variant="ghost" size="icon" className="relative text-[#EDE8D0] hover:text-[#EDE8D0]/70 hover:bg-[#EDE8D0]/10">
               <ShoppingBag className="h-5 w-5" />
               {itemCount > 0 && (
-                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#FFFFFF] text-[10px] font-bold text-[#a89060]">
+                <span className="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-[#a89060] text-[10px] font-bold text-[#FFFFFF]">
                   {itemCount}
                 </span>
               )}

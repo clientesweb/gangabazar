@@ -4,9 +4,9 @@ import Image from "next/image"
 const footerLinks = {
   explorar: [
     { name: "Novedades", href: "/novedades" },
-    { name: "Termos", href: "/colecciones/termos" },
-    { name: "Mates", href: "/colecciones/mates" },
-    { name: "Accesorios", href: "/colecciones/accesorios" },
+    { name: "Termos", href: "/categorias/termos" },
+    { name: "Mates", href: "/categorias/mates" },
+    { name: "Accesorios", href: "/categorias/accesorios" },
   ],
   ayuda: [
     { name: "Grabado Laser", href: "/grabado-laser" },
@@ -22,7 +22,7 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="border-t border-[#8B7548] bg-[#a89060]">
+    <footer className="border-t border-[#4F4D46] bg-[#4F4D46]">
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20">
         <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-5 lg:gap-12">
           {/* Brand */}

@@ -6,21 +6,21 @@ const categories = [
     name: "Termos",
     description: "Stanley, Waterdog, Lumilagro y mas",
     image: "/images/category-termos.jpg",
-    href: "/colecciones/termos",
+    href: "/categorias/termos",
     count: "6 productos",
   },
   {
     name: "Mates",
     description: "Ceramica, vidrio, acero, calabaza",
     image: "/images/category-mates.webp",
-    href: "/colecciones/mates",
+    href: "/categorias/mates",
     count: "6 productos",
   },
   {
     name: "Accesorios",
     description: "Bombillas, yerberas, kits y mas",
     image: "/images/category-accesorios.jpg",
-    href: "/colecciones/accesorios",
+    href: "/categorias/accesorios",
     count: "6 productos",
   },
 ]
@@ -37,7 +37,7 @@ export function CategoriesSection() {
             </h2>
           </div>
           <Link
-            href="/colecciones"
+            href="/categorias"
             className="group flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-foreground transition-colors hover:text-primary"
           >
             Ver todo

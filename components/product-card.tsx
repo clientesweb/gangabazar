@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils"
 import { getImagesByProductId } from "@/lib/services/images"
 import { getImagesByGrabadoId } from "@/lib/services/grabado-images"
 import type { Product } from "@/lib/services/products"
-import { generateSlug } from "@/lib/services/products"
+import { generateSlug, generateProductUrl } from "@/lib/services/products"
 
 interface ProductCardProps {
   product: Product
@@ -19,9 +19,8 @@ export function ProductCard({ product }: ProductCardProps) {
   const [images, setImages] = useState<any[]>([])
   const [loading, setLoading] = useState(true)
 
-  // Detectar si es grabado o producto basado en la categoría
+  // Detectar si es grabado o producto basado en la categoria
   const isGrabado = product.category === 'grabados'
-  const baseRoute = isGrabado ? '/grabado' : '/producto'
 
   useEffect(() => {
     const getImages = isGrabado ? getImagesByGrabadoId : getImagesByProductId
@@ -39,7 +38,7 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <div className="group" onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)}>
-      <Link href={`${baseRoute}/${generateSlug(product.name)}`} className="block">
+      <Link href={isGrabado ? `/grabados/${generateSlug(product.name)}` : generateProductUrl(product)} className="block">
         <div className="relative aspect-[3/4] overflow-hidden rounded-2xl bg-muted">
           <img
             src={isHovered && hoverImageUrl ? hoverImageUrl : imageUrl}
@@ -47,7 +46,7 @@ export function ProductCard({ product }: ProductCardProps) {
             className="h-full w-full object-cover transition-all duration-700"
           />
           {product.is_new && (
-            <span className="absolute left-4 top-4 rounded-full bg-[#1A1A1A] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#FFFFFF]">
+            <span className="absolute left-4 top-4 rounded-full bg-[#C8AD7F] px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-[#FFFFFF]">
               Nuevo
             </span>
           )}
@@ -56,7 +55,7 @@ export function ProductCard({ product }: ProductCardProps) {
               e.preventDefault()
               setIsFavorite(!isFavorite)
             }}
-            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#1A1A1A]/80 backdrop-blur transition-all hover:bg-[#1A1A1A]"
+            className="absolute right-4 top-4 flex h-10 w-10 items-center justify-center rounded-full bg-[#4F4D46]/70 backdrop-blur transition-all hover:bg-[#C8AD7F]"
           >
             <Heart
               className={cn("h-5 w-5 transition-colors", isFavorite ? "fill-[#FFFFFF] text-[#FFFFFF]" : "text-[#FFFFFF]")}

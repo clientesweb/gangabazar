@@ -10,13 +10,13 @@ const editorialImages = [
   },
   {
     id: 2,
-    image: "/images/insta-3.webp",
+    image: "/images/grabado-laser.jpg",
     alt: "Grabado laser de precision",
     aspect: "aspect-[4/5]",
   },
   {
     id: 3,
-    image: "https://ckeksovupbzweqfrniho.supabase.co/storage/v1/object/public/product-images/products/673ec52f-e5bb-45b4-9e92-35677a464392/main/1770654242756.jpeg",
+    image: "/images/category-mates.jpg",
     alt: "Mates artesanales",
     aspect: "aspect-[3/4]",
   },
@@ -34,7 +34,7 @@ export function EditorialSection() {
             </h2>
           </div>
           <Link
-            href="/colecciones"
+            href="/categorias"
             className="group flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-foreground transition-colors hover:text-primary"
           >
             Ver productos
@@ -46,7 +46,7 @@ export function EditorialSection() {
           {editorialImages.map((item, index) => (
             <Link
               key={item.id}
-              href="/colecciones"
+              href="/categorias"
               className={`group relative overflow-hidden rounded-2xl bg-muted ${item.aspect} ${index === 1 ? "sm:-mt-8" : ""}`}
             >
               <img

@@ -35,7 +35,7 @@ export function TestimonialsSection() {
   const prev = () => setCurrent((prev) => (prev - 1 + testimonials.length) % testimonials.length)
 
   return (
-    <section className="bg-[#1A1A1A] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 rounded-3xl mx-4 sm:mx-6 lg:mx-8 my-4">
+    <section className="bg-[#4F4D46] px-4 py-16 sm:px-6 sm:py-24 lg:px-8 rounded-3xl mx-4 sm:mx-6 lg:mx-8 my-4">
       <div className="mx-auto max-w-4xl">
         <div className="flex flex-col items-center text-center">
           <Quote className="h-10 w-10 text-[#FFFFFF]/30 sm:h-12 sm:w-12" />
