@@ -77,9 +77,12 @@ export function ProductDetailClient({ product, relatedProducts = [] }: ProductDe
       <section className="bg-background px-4 pb-16 sm:px-6 lg:px-8">
         <div className="mx-auto max-w-7xl">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-16">
+
             {/* Images */}
-            <div className="flex flex-col-reverse gap-4 sm:flex-row">
-              <div className="flex gap-2 sm:flex-col">
+            <div className="flex flex-col-reverse gap-4 sm:flex-row min-w-0">
+              
+              {/* Thumbnails */}
+              <div className="flex gap-2 overflow-x-auto sm:flex-col sm:overflow-visible">
                 {images.map((image: string, index: number) => (
                   <button
                     key={index}
@@ -97,31 +100,35 @@ export function ProductDetailClient({ product, relatedProducts = [] }: ProductDe
                   </button>
                 ))}
               </div>
-              <div className="relative w-full aspect-square max-h-[600px] overflow-hidden bg-muted">
+
+              {/* Main Image */}
+              <div className="relative w-full aspect-square max-h-[600px] overflow-hidden bg-muted min-w-0">
                 <img
                   src={images[selectedImage]}
                   alt={product.name}
                   className="h-full w-full object-cover"
                 />
-                {/* Navigation arrows */}
+
                 {images.length > 1 && (
                   <>
                     <button
                       onClick={handlePrevImage}
-                      className="absolute left-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 text-foreground backdrop-blur transition-colors hover:bg-background"
+                      className="absolute left-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 backdrop-blur transition-colors hover:bg-background"
                       aria-label="Imagen anterior"
                     >
                       <ChevronLeft className="h-5 w-5" />
                     </button>
+
                     <button
                       onClick={handleNextImage}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 text-foreground backdrop-blur transition-colors hover:bg-background"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 flex h-10 w-10 items-center justify-center rounded-full bg-background/80 backdrop-blur transition-colors hover:bg-background"
                       aria-label="Imagen siguiente"
                     >
                       <ChevronRight className="h-5 w-5" />
                     </button>
                   </>
                 )}
+
                 {product.is_new && (
                   <span className="absolute left-4 top-4 bg-primary px-3 py-1 text-[10px] uppercase tracking-widest text-primary-foreground">
                     Nuevo
